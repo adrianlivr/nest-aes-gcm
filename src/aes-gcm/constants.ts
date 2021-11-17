@@ -1,0 +1,1 @@
+export const AES_GCM_OPTIONS = 'AES_GCM_OPTIONS';

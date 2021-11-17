@@ -1,0 +1,64 @@
+name: Publish Package & Create Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build, Test & Lint
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install, Lint and Test Package
+        run: |
+          rm -rf node_modules && yarn install --frozen-lockfile
+          yarn lint
+          yarn test
+
+  publish_pkg:
+    needs: build
+    name: Publish Package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Add Package to Registry
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://npm.pkg.github.com/
+      - name: Publish the Package
+        run: |
+          rm -rf node_modules && yarn install --frozen-lockfile
+          yarn publish --new-version ${GITHUB_REF#"refs/tags/"} --no-git-tag-version
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+  create_release:
+    needs: publish_pkg
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          # body: |
+          #   Changes in this Release
+          #   - First Change
+          #   - Second Change
