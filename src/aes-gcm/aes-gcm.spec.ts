@@ -34,7 +34,7 @@ describe('AesGcmService', () => {
       expect(randomKey).toHaveLength(64);
     });
 
-    it('should be return a async random key', async () => {
+    it('should be return an async random key', async () => {
       const randomKey = await service.generateRandomKey(32, 'hex');
       expect(randomKey).toHaveLength(64);
     });

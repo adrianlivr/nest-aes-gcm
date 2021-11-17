@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  The module encryption AES GCM for <a href="https://github.com/nestjs/nest">Nest</a>.
+  The AES GCM encryption module for <a href="https://github.com/nestjs/nest">Nest</a>.
 </p>
 
 ## Configure
