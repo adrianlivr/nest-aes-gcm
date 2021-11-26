@@ -1,6 +1,6 @@
 {
   "name": "@adrianlivr/nest-aes-gcm",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "author": "Adriano Oliveira",
   "description": "Encryption AES_GCM module for NestJS framework",
   "license": "MIT",
