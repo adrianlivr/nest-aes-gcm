@@ -1,34 +1,35 @@
 {
   "name": "@adrianlivr/nest-aes-gcm",
   "version": "1.0.0",
-  "description": "Encryption AES_GCM module for NestJS framework",
   "author": "Adriano Oliveira",
+  "description": "Encryption AES_GCM module for NestJS framework",
+  "license": "MIT",
   "main": "dist/index.js",
   "files": [
     "dist/"
   ],
-  "license": "MIT",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "clean": "rm -rf dist",
     "dev": "tsc --ts watch",
     "test": "jest",
     "test:cov": "jest --coverage",
+    "test:watch": "jest --watch",
     "lint": "eslint 'src/**/*.ts' --fix",
-    "prepublish": "npm run clean && npm run build"
+    "prepublish": "yarn clean && yarn build"
   },
   "devDependencies": {
     "@nestjs/core": "^7.6.4",
     "@nestjs/testing": "^7.6.4",
     "@types/jest": "^26.0.19",
     "@types/node": "^14.14.7",
-    "@typescript-eslint/eslint-plugin": "^4.11.0",
-    "@typescript-eslint/parser": "^4.10.0",
-    "eslint": "^7.16.0",
-    "eslint-config-prettier": "^7.1.0",
-    "eslint-plugin-import": "^2.22.1",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.3.2",
     "jest": "^26.6.3",
-    "prettier": "^2.2.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.3",
     "ts-jest": "^26.4.4",
@@ -39,18 +40,13 @@
     "@nestjs/common": "^7.6.4"
   },
   "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "rootDir": "src",
-    "testRegex": ".spec.ts$",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
-    },
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "**/*.ts",
+      "!**/coverage/**",
+      "!**/node_modules/**"
+    ]
   },
   "repository": {
     "type": "git",

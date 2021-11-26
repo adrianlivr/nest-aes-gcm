@@ -1,4 +1,4 @@
-import { ModuleMetadata, Type } from "@nestjs/common";
+import { ModuleMetadata, Type } from '@nestjs/common';
 
 export type AesGcmModuleOptions = {
   key?: string;
@@ -14,7 +14,7 @@ export interface AesGcmModuleOptionsFactory {
 }
 
 export interface AesGcmModuleAsyncOptions
-  extends Pick<ModuleMetadata, "imports"> {
+  extends Pick<ModuleMetadata, 'imports'> {
   useFactory?: (
     ...args: any[]
   ) => Promise<AesGcmModuleOptions> | AesGcmModuleOptions;
