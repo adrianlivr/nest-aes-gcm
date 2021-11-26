@@ -2,7 +2,7 @@ import { DynamicModule, Global, Module } from '@nestjs/common';
 import {
   AesGcmModuleAsyncOptions,
   AesGcmModuleOptions,
-} from './aes-gcm.interfaces';
+} from './aes-gcm.interface';
 import { AesGcmService } from './aes-gcm.service';
 import { AES_GCM_OPTIONS } from './constants';
 

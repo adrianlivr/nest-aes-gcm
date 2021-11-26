@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import * as crypto from 'crypto';
-import { AesGcmModuleOptions } from './aes-gcm.interfaces';
+import { AesGcmModuleOptions } from './aes-gcm.interface';
 import { AES_GCM_OPTIONS } from './constants';
 
 @Injectable()
